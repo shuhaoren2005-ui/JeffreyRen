@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeffrey Ren | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0ea5e9;
+            --primary-accent: #38bdf8;
+            --bg-dark: #0f172a;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --card-bg: rgba(30, 41, 59, 0.6);
+            --border: rgba(255, 255, 255, 0.1);
+            --shadow-glow: 0 0 20px rgba(14, 165, 233, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animated Gradient Background */
+        body {
+            color: var(--text-main);
+            background: linear-gradient(-45deg, #0f172a, #1e1b4b, #0c4a6e, #172554);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Glassmorphism Header */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--primary-accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-accent);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 8rem 2rem 5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 4rem;
+        }
+
+        .hero-text h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #ffffff, #93c5fd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-text h2 {
+            font-size: 1.5rem;
+            color: var(--primary-accent);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+        }
+
+        .profile-img-container {
+            position: relative;
+        }
+
+        .profile-img-container::before {
+            content: '';
+            position: absolute;
+            inset: -10px;
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            border-radius: 50%;
+            z-index: -1;
+            filter: blur(20px);
+            opacity: 0.6;
+            animation: pulseGlow 4s infinite alternate;
+        }
+
+        .profile-img {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            background-color: #1e293b;
+            z-index: 1;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(0.95); opacity: 0.4; }
+            100% { transform: scale(1.05); opacity: 0.8; }
+        }
+
+        /* Buttons */
+        .cta-buttons {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.9rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(to right, #0ea5e9, #2563eb);
+            color: white;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(14, 165, 233, 0.6);
+        }
+
+        .btn-outline {
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            backdrop-filter: blur(5px);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary-accent);
+            transform: translateY(-3px);
+        }
+
+        /* Sections & Cards */
+        section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 2.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            border-radius: 2px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background: rgba(30, 41, 59, 0.8);
+            border-color: rgba(56, 189, 248, 0.5);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .card-subtitle {
+            font-size: 1.05rem;
+            color: var(--primary-accent);
+            font-weight: 500;
+            margin-top: 0.2rem;
+        }
+
+        .card-date {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .card ul {
+            margin-left: 1.2rem;
+            color: #cbd5e1;
+        }
+
+        .card li {
+            margin-bottom: 0.6rem;
+        }
+        
+        .card li::marker {
+            color: var(--primary-accent);
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: rgba(14, 165, 233, 0.1);
+            color: #38bdf8;
+            border: 1px solid rgba(14, 165, 233, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: var(--primary-accent);
+            color: #0f172a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(56, 189, 248, 0.3);
+        }
+
+        /* Contact Section */
+        .contact-box {
+            text-align: center;
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            padding: 4rem 2rem;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+        }
+
+        /* Scroll Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border);
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-top: 4rem;
+            }
+            .hero-text h1 { font-size: 2.5rem; }
+            .nav-links { display: none; } /* Could add a hamburger menu here */
+            .card-header { flex-direction: column; }
+            .cta-buttons { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="#" class="logo">Jeffrey Ren</a>
+            <ul class="nav-links">
+                <li><a href="#about">Education</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#leadership">Leadership</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero reveal active">
+        <div class="hero-text">
+            <h1>Jeffrey Ren</h1>
+            <h2>Economics & Psychology Major at Swarthmore College</h2>
+            <p>Driven by a passion for understanding human behavior and optimizing organizational systems. Bridging empirical research, macroeconomic policy, and strategic advisory to create meaningful civic and institutional impact.</p>
+            <div class="cta-buttons">
+                <a href="mailto:shuhaoren2005@gmail.com" class="btn btn-primary">Get in Touch</a>
+                <a href="https://www.linkedin.com/in/shuhao-ren" target="_blank" class="btn btn-outline">LinkedIn Profile</a>
+            </div>
+        </div>
+        <div class="profile-img-container">
+            <!-- Ensure you have your profile picture saved as profile.jpg in the same folder -->
+            <img src="profile.jpg" alt="Jeffrey Ren" class="profile-img" onerror="this.src='https://via.placeholder.com/280/1e293b/38bdf8?text=JR'">
+        </div>
+    </div>
+
+    <section id="about">
+        <h2 class="section-title reveal">Education</h2>
+        <div class="card reveal">
+            <div class="card-header">
+                <div>
+                    <div class="card-title">Swarthmore College</div>
+                    <div class="card-subtitle">Bachelor of Arts, Economics & Psychology</div>
+                </div>
+                <div class="card-date">Expected Fall 2027 | Swarthmore, PA</div>
+            </div>
+        </div>
+
+        <div class="card reveal">
+            <div class="card-header">
+                <div>
+                    <div class="card-title">Hillcrest High School</div>
+                    <div class="card-subtitle">Humanities & Humanistic Studies</div>
+                </div>
+                <div class="card-date">Sep 2019 – May 2023 | Queens, NY</div>
+            </div>
+            <ul style="list-style: none; margin-left: 0;">
+                <li>🏆 <strong>Honors:</strong> Salutatorian, Academic Leadership Plaque, AP Capstone Diploma.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2 class="section-title reveal">Policy & Economic Advisory</h2>
+
+        <div class="card reveal">
+            <div class="card-header">
+                <div>
+                    <div class="card-title">Economic Policy Intern & Research Assistant</div>
+                    <div class="card-subtitle">Institute for Integrated Development Studies (IIDS)</div>
+                </div>
+                <div class="card-date">May 2026 – Present | Kathmandu, Nepal</div>
+            </div>
+            <ul>
+                <li>Drafted policy frameworks under former World Bank Lead Specialist Dr. Arun Joshi.</li>
+                <li>Authored a comprehensive policy brief on AI integration in higher education with Kathmandu University, Quest College, and Tribhuvan University.</li>
+                <li>Selected to author a featured page on AI education policy for the annual IIDS publication.</li>
+                <li>Drafted a strategic diplomacy report for the Ministry of Foreign Affairs analyzing bilateral relations across 10 nations.</li>
+            </ul>
+        </div>
+
+        <div class="card reveal">
+            <div class="card-header">
+                <div>
+                    <div class="card-title">Diplomatic Policy Researcher / Consultant</div>
+                    <div class="card-subtitle">Ministry of Foreign Affairs Nepal (MoFA)</div>
+                </div>
+                <div class="card-date">May 2026 – Present | Kathmandu, Nepal</div>
+            </div>
+            <ul>
+                <li>Authored diplomatic strategy report forecasting 2025–2026 bilateral relations and policy alignment.</li>
+                <li>Evaluated geopolitical trends and economic opportunities to advise MoFA officials on foreign policy.</li>
+                <li>Synthesized cross-border datasets into actionable diplomatic frameworks.</li>
+            </ul>
+        </div>
+
+        <div class="card reveal">
+            <div class="card-header">
+                <div>
+                    <div class="card-title">Secretary & Policy Advisor</div>
+                    <div class="card-subtitle">Office of Hon. Parliament Member Sushil Khadka</div>
+                </div>
+                <div class="card-date">May 2026 – Present | Kathmandu, Nepal</div>
+            </div>
+            <ul>
+                <li>Researched high-yield investment avenues for Nepal's $23 Billion USD Sovereign Wealth Fund.</li>
+                <li>Synthesized macroeconomic data into financial briefings and media reports directly for federal officials.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="research">
+        <h2 class="section-title reveal">Research & Legal Explorations</h2>
+
+        <div class="card reveal">
+            <div class="card-header">
+                <div>
+                    <div class="card-title">Pre-Law Exploration Program Scholar</div>
+                    <div class="card-subtitle">University of Pennsylvania Carey Law School</div>
+                </div>
+                <div class="card-date">Jan 2026 – Jul 2026 | Philadelphia, PA</div>
+            </div>
+            <ul>
+                <li>Engaged in intensive legal pedagogy, legal writing, and simulated law lectures with practicing legal professionals.</li>
+            </ul>
+        </div>
+
+        <div class="card reveal">
+            <div class="card-header">
+                <div>
+                    <div class="card-title">Research Assistant</div>
+                    <div class="card-subtitle">Swarthmore Psychology Research</div>
+                </div>
+                <div class="card-date">Sep 2024 – Present | Swarthmore, PA</div>
+            </div>
+            <ul>
+                <li>Conducted experimental studies integrating Ice Pressor, DASS, and AOSPAN testing paradigms.</li>
+                <li>Administered Electroencephalogram (EEG) protocols and performed statistical analysis via JASP.</li>
+                <li>Presented findings to 100+ faculty members and peers at a culminating research expo.</li>
+            </ul>
+        </div>
+        
+        <div class="card reveal">
+            <div class="card-header">
+                <div>
+                    <div class="card-title">Technical Skills Accelerator</div>
+                    <div class="card-subtitle">AESOP Academy & Advisory</div>
+                </div>
+                <div class="card-date">Sep 2024 – Jul 2026 | Swarthmore, PA</div>
+            </div>
+            <ul>
+                <li>Mastered Excel functions, SQL data management, and Copilot AI-powered prompt engineering for risk assessments.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="leadership">
+        <h2 class="section-title reveal">Leadership & Community Impact</h2>
+
+        <div class="card reveal">
+            <div class="card-header">
+                <div>
+                    <div class="card-title">Resident Assistant & Exam Proctor</div>
+                    <div class="card-subtitle">Swarthmore Residential Life & Disability Office</div>
+                </div>
+                <div class="card-date">Mar 2024 – Present | Swarthmore, PA</div>
+            </div>
+            <ul>
+                <li>Managed residential floor community for 30+ students and facilitated exam accommodations for 50+ students.</li>
+            </ul>
+        </div>
+
+        <div class="card reveal">
+            <div class="card-header">
+                <div>
+                    <div class="card-title">Active Member</div>
+                    <div class="card-subtitle">Swarthmore Debate Society</div>
+                </div>
+                <div class="card-date">Jan 2026 – Present | Swarthmore, PA</div>
+            </div>
+            <ul>
+                <li>Developed rigorous oral advocacy and rapid-response research skills on complex global and economic issues.</li>
+            </ul>
+        </div>
+
+        <div class="card reveal">
+            <div class="card-header">
+                <div>
+                    <div class="card-title">Volunteer Foreign English Educator</div>
+                    <div class="card-subtitle">Namuna Machhinddra College</div>
+                </div>
+                <div class="card-date">May 2026 – Present | Kathmandu, Nepal</div>
+            </div>
+            <ul>
+                <li>Designed and delivered English language instruction to 200+ local public high school students across 7 classes.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2 class="section-title reveal">Skills & Certifications</h2>
+        <div class="skills-grid">
+            <div class="card reveal skill-category">
+                <h3 style="color: white; margin-bottom: 0.8rem;">Technical & AI Tools</h3>
+                <div class="tags">
+                    <span class="tag">Excel</span>
+                    <span class="tag">SQL Workbench</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">R Studio</span>
+                    <span class="tag">STATA</span>
+                    <span class="tag">JASP</span>
+                    <span class="tag">Tableau</span>
+                    <span class="tag">EEG Admin</span>
+                    <span class="tag">AI Prompting</span>
+                </div>
+            </div>
+
+            <div class="card reveal skill-category">
+                <h3 style="color: white; margin-bottom: 0.8rem;">Policy & Strategy</h3>
+                <div class="tags">
+                    <span class="tag">Diplomatic Strategy</span>
+                    <span class="tag">Government Advisory</span>
+                    <span class="tag">Policy Writing</span>
+                    <span class="tag">Macroeconomics</span>
+                    <span class="tag">Geopolitical Trends</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title reveal">Connect With Me</h2>
+        <div class="contact-box reveal">
+            <p style="color: var(--text-muted); margin-bottom: 1.2rem; font-size: 1.1rem;">I welcome conversations around macroeconomic policy, legal studies, and behavioral research.</p>
+            <p style="margin-bottom: 0.5rem;"><strong>Location:</strong> Queens, NY / Swarthmore, PA</p>
+            <p style="margin-bottom: 2rem;"><strong>Phone:</strong> (929) 333-5583</p>
+            <div class="cta-buttons" style="justify-content: center;">
+                <a href="mailto:shuhaoren2005@gmail.com" class="btn btn-primary">Email Me Directly</a>
+                <a href="https://www.linkedin.com/in/shuhao-ren" target="_blank" class="btn btn-outline">Connect on LinkedIn</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Jeffrey Ren. All rights reserved.</p>
+    </footer>
+
+    <!-- Intersection Observer Script for scroll animations -->
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        // Trigger once on load
+        reveal();
+    </script>
+</body>
+</html>
